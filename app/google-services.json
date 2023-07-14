@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "163774612398",
+    "project_id": "chandara-communitask",
+    "storage_bucket": "chandara-communitask.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163774612398:android:921573fe3d3eeaa776fe3f",
+        "android_client_info": {
+          "package_name": "com.jeysi.chandaracommunitask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163774612398-p1l71ie03s68m03fpqoqeo9523iimdpa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jeysi.chandaracommunitask",
+            "certificate_hash": "29faade64f8da52258b8ec24b8abacb8372e6f6e"
+          }
+        },
+        {
+          "client_id": "163774612398-a1ee4pntvmol51dstosahsk5alam16e0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK7gY7U2T0W70On6xPkMbakX2HeuYEC2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163774612398-a1ee4pntvmol51dstosahsk5alam16e0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

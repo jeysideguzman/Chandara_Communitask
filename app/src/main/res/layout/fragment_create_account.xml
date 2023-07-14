@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/appbkg"
+    tools:context=".fragments.CreateAccountFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:text="Create \nAccount"
+        android:layout_marginTop="78dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:id="@+id/LL1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/nameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/text_box"
+            android:drawableLeft="@drawable/usernameicon"
+            android:drawablePadding="12dp"
+            android:hint="Name"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/emailET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/text_box"
+            android:drawableLeft="@drawable/emailicon"
+            android:drawablePadding="12dp"
+            android:hint="Email"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/passwordET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/text_box"
+            android:drawableLeft="@drawable/passicon"
+            android:drawablePadding="12dp"
+            android:hint="Password"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/confirmpasswordET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/text_box"
+            android:drawableLeft="@drawable/passwordicon"
+            android:drawablePadding="12dp"
+            android:hint="Confirm Password"
+            android:padding="12dp" />
+
+    </LinearLayout>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/LL1"
+        android:visibility="gone"
+        android:layout_above="@id/signUpbtn"/>
+
+    <Button
+        android:id="@+id/signUpbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_above="@id/loginTV"
+        android:layout_marginBottom="8dp"
+        android:textColor="#fff"
+        android:background="@drawable/btnbkg"/>
+
+    <TextView
+        android:id="@+id/loginTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/black"
+        android:layout_marginBottom="150dp"
+
+        android:text="Already a user? Login" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp"
+        android:fontFamily="@font/lexend_tera"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="C O M M U N I T A S K" />
+
+
+
+
+
+</RelativeLayout>
