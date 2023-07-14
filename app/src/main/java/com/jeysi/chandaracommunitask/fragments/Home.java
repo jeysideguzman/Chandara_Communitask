@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,7 +56,7 @@ public class Home extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-        reference = FirebaseFirestore.getInstance().collection("Posts").document(user.getUid());
+        //reference = FirebaseFirestore.getInstance().collection("Posts").document(user.getUid());
         list = new ArrayList<>();
         adapter = new HomeAdapter(list, getContext());
         recyclerView.setAdapter(adapter);
@@ -64,6 +66,11 @@ public class Home extends Fragment {
     }
 
     private void init(View view){
+
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        if (getActivity() != null)
+            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -75,6 +82,13 @@ public class Home extends Fragment {
     }
 
     private void loadDataFromFirestore(){
+
+        list.add(new HomeModel("Jeysi","12/18/2002","","","123456",18));
+        list.add(new HomeModel("Jeysi","11/18/2002","","","321456",12));
+        list.add(new HomeModel("Jeysi","10/18/2002","","","654123",20));
+        list.add(new HomeModel("Jeysi","09/18/2002","","","345612",27));
+
+        adapter.notifyDataSetChanged();
 
 
 
