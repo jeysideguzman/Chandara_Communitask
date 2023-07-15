@@ -39,9 +39,7 @@ public class CreateAccountFragment extends Fragment {
     private Button signUpBtn;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
-
     public static final String EMAIL_REGEX = "^(.+)@(.+)$";
-
 
     public CreateAccountFragment() {
         // Required empty public constructor
@@ -160,6 +158,9 @@ public class CreateAccountFragment extends Fragment {
         map.put("email", email);
         map.put("profileImage", " ");
         map.put("uid", user.getUid());
+        map.put("following", 0);
+        map.put("followers", 0);
+        map.put("status", " ");
 
         FirebaseFirestore.getInstance().collection("Users").document(user.getUid())
                 .set(map)

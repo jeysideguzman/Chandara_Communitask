@@ -72,7 +72,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nameTV"
+                android:id="@+id/nameTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -121,6 +121,7 @@
 
 
             <TextView
+                android:id="@+id/followingCountTv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="250"
@@ -148,6 +149,7 @@
 
 
             <TextView
+                android:id="@+id/followersCountTv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="18k"
@@ -175,6 +177,7 @@
 
 
             <TextView
+                android:id="@+id/postCountTv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="250"
@@ -226,6 +229,7 @@
         android:layout_marginBottom="8dp"/>
     
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/combinedLayout"/>
