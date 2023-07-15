@@ -111,6 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
+        android:textStyle="bold"
 
         android:layout_marginTop="2dp"
         android:layout_below="@id/signUpbtn"
@@ -122,21 +123,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="@font/lexend_tera"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:text="C O M M U N I T A S K" />
+
     <ImageView
         android:layout_width="424dp"
         android:layout_height="225dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="-24dp"
-
-        android:layout_marginTop="626dp"
+        android:layout_marginBottom="-25dp"
         android:background="@drawable/hands1" />
-
-
-
 
 
 </RelativeLayout>

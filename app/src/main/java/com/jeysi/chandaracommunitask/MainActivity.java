@@ -15,8 +15,9 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
 
 
-    //private Toolbar tabLayout2;
+
     private ViewPager viewPager;
+
     ViewPagerAdapter pagerAdapter;
 
 
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
         addTabs();
 
+
+
+
+
     }
     private void init(){
 
@@ -38,20 +43,25 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //tabLayout = findViewById(R.id.tabLayout2);
+
+
     }
 
     private void addTabs(){
 
 
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.homenav));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.addposticon));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.searchicon));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.notificon));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.notiffill));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.newhomenav));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.newinsightsnav));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.addpostblack));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.newcommunidaynav));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.usericon));
+
+
+
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
@@ -66,20 +76,22 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (tab.getPosition()) {
                     case 0:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.homenav);
+                        tabLayout.getTabAt(0).setIcon(R.drawable.newhomenav);
                         break;
                     case 1:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.searchicon);
+                        tabLayout.getTabAt(1).setIcon(R.drawable.newinsightsnav);
                         break;
                     case 2:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.addposticon);
+                        tabLayout.getTabAt(2).setIcon(R.drawable.addpostblack);
                         break;
                     case 3:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.notiffill);
+                        tabLayout.getTabAt(3).setIcon(R.drawable.newcommunidaynav);
                         break;
                     case 4:
-                        tabLayout.getTabAt(0).setIcon(android.R.drawable.ic_menu_help);
+                        tabLayout.getTabAt(4).setIcon(R.drawable.usericon);
                         break;
+
+
 
                 }
             }
@@ -89,20 +101,22 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (tab.getPosition()) {
                     case 0:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.homenav);
+                        tabLayout.getTabAt(0).setIcon(R.drawable.newhomenav);
                         break;
                     case 1:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.searchicon);
+                        tabLayout.getTabAt(1).setIcon(R.drawable.newinsightsnav);
                         break;
                     case 2:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.addposticon);
+                        tabLayout.getTabAt(2).setIcon(R.drawable.addpostblack);
                         break;
                     case 3:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.notificon);
+                        tabLayout.getTabAt(3).setIcon(R.drawable.newcommunidaynav);
                         break;
                     case 4:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.notiffill);
+                        tabLayout.getTabAt(4).setIcon(R.drawable.usericon);
                         break;
+
+
 
                 }
 
@@ -113,19 +127,19 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (tab.getPosition()) {
                     case 0:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.homenav);
+                        tabLayout.getTabAt(0).setIcon(R.drawable.newhomenav);
                         break;
                     case 1:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.searchicon);
+                        tabLayout.getTabAt(1).setIcon(R.drawable.newinsightsnav);
                         break;
                     case 2:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.addposticon);
+                        tabLayout.getTabAt(2).setIcon(R.drawable.addpostblack);
                         break;
                     case 3:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.notificon);
+                        tabLayout.getTabAt(3).setIcon(R.drawable.newcommunidaynav);
                         break;
                     case 4:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.notiffill);
+                        tabLayout.getTabAt(4).setIcon(R.drawable.usericon);
                         break;
 
                 }
@@ -134,4 +148,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+
 }
