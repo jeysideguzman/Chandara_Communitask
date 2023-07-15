@@ -96,8 +96,8 @@ public class Profile extends Fragment {
 
                     String name = value.getString("name");
                     String status = value.getString("status");
-                    int followers = value.getString("followers").intValue();
-                    int following = value.getString("following").intValue();
+                    int followers = value.getLong("followers").intValue();
+                    int following = value.getLong("following").intValue();
 
                     String profileURL = value.getString("profileImage");
 

@@ -13,6 +13,9 @@ import com.jeysi.chandaracommunitask.adapter.ViewPagerAdapter;
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
+
+
+    //private Toolbar tabLayout2;
     private ViewPager viewPager;
     ViewPagerAdapter pagerAdapter;
 
@@ -29,10 +32,13 @@ public class MainActivity extends AppCompatActivity {
     }
     private void init(){
 
-
-
         viewPager = findViewById(R.id.viewPager);
+
         tabLayout = findViewById(R.id.tabLayout);
+
+
+
+        //tabLayout = findViewById(R.id.tabLayout2);
     }
 
     private void addTabs(){
