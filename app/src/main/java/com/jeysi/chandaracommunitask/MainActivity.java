@@ -13,11 +13,7 @@ import com.jeysi.chandaracommunitask.adapter.ViewPagerAdapter;
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
-
-
-
     private ViewPager viewPager;
-
     ViewPagerAdapter pagerAdapter;
 
 

@@ -104,118 +104,113 @@
         android:id="@+id/combinedLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear1">>
-    
+        android:layout_below="@id/linear1">
+
         <LinearLayout
-        android:id="@+id/countLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone">
-        
-        <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/countLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
 
-            <TextView
-                android:id="@+id/followingCountTv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="250"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/followingCountTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="250"
+                    android:textAlignment="center"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/following"
-                android:gravity="center_horizontal"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/following"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/followersCountTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="18k"
+                    android:textAlignment="center"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/followers"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/postCountTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="250"
+                    android:textAlignment="center"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/posts"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/followersCountTv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="18k"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/followers"
-                android:gravity="center_horizontal"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:textColor="@color/black"/>
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/postCountTv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="250"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/posts"
-                android:gravity="center_horizontal"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:textColor="@color/black"/>
-
-
-        </LinearLayout>
-
-        </LinearLayout>
-    
-        <RelativeLayout
-        android:id="@+id/followLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Follow"
+            android:visibility="gone"
             android:background="@drawable/btnbkg"
             android:textColor="@color/white"
             android:width="160dp"
             android:layout_centerHorizontal="true"
             android:id="@+id/followBtn"/>
-
-    </RelativeLayout>
 
     </RelativeLayout>
 
