@@ -1,6 +1,13 @@
 package com.jeysi.chandaracommunitask.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,15 +16,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -44,6 +42,7 @@ public class Profile extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayout countLayout;
     private FirebaseUser user;
+    String uid;
 
     boolean isMyProfile = true;
 
@@ -158,7 +157,12 @@ public class Profile extends Fragment {
 
     private void  loadPostImage(){
 
-        String uid =user.getUid();
+        if (isMyProfile){
+            uid =user.getUid();
+        }else {
+
+        }
+
 
         DocumentReference reference = FirebaseFirestore.getInstance().collection("Users").document(uid);
 

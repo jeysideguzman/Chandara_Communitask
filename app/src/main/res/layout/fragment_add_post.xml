@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="8dp"
     tools:context=".fragments.AddPost">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    
+    <RelativeLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical">
 
-</FrameLayout>
+        <ImageButton
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/backbtn"
+            android:id="@+id/backBtn" />
+
+        <ImageButton
+            android:visibility="gone"
+            android:background="@drawable/nextbtn"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/nextBtn" />
+
+
+
+
+    </RelativeLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionET"
+        android:layout_below="@id/layout"
+        android:background="@android:color/transparent"
+        android:hint="Share your milestone"
+        android:minLines="12" />
+    
+    <EditText
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"
+        android:layout_margin="6dp"
+        android:layout_below="@id/descriptionET" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/imageView"
+        android:visibility="gone"
+        android:contentDescription="@null"
+        android:layout_below="@id/descriptionET"
+        android:background="@color/gray" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView" />
+
+
+
+
+
+</RelativeLayout>
