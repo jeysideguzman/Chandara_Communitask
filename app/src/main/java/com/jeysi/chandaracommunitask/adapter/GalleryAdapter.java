@@ -1,6 +1,5 @@
 package com.jeysi.chandaracommunitask.adapter;
 
-import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,46 +17,30 @@ import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryHolder> {
 
-
-    private List<GalleryImages> list;
-
     SendImage onSendImage;
+    List<GalleryImages> list;
 
     public GalleryAdapter(List<GalleryImages> list) {
         this.list = list;
     }
-
 
     @NonNull
     @Override
     public GalleryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.image_items, parent, false);
-
         return new GalleryHolder(view);
-
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull GalleryHolder holder, @SuppressLint("RecyclerView") int position) {
-
-        //ERROR
-
-        // @SuppressLint("RecyclerView")
+    public void onBindViewHolder(@NonNull GalleryHolder holder, int position) {
 
         Glide.with(holder.itemView.getContext().getApplicationContext())
                 .load(list.get(position).getPicUri())
-                        .into(holder.imageView);
+                .into(holder.imageView);
 
-
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chooseImage(list.get(position).getPicUri());
-
-            }
-        });
-
+        holder.imageView.setOnClickListener(v -> chooseImage(list.get(holder.getAbsoluteAdapterPosition()).getPicUri()));
 
     }
 
@@ -67,30 +50,29 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryH
 
     }
 
+
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    class GalleryHolder extends RecyclerView.ViewHolder {
-
-        private ImageView imageView;
-
-        public GalleryHolder(@NonNull View itemView) {
-            super(itemView);
-
-            imageView = itemView.findViewById(R.id.imageView);
-
-
-        }
+    public void SendImage(SendImage sendImage) {
+        this.onSendImage = sendImage;
     }
 
     public interface SendImage {
         void onSend(Uri picUri);
     }
 
-    public void SendImage (SendImage sendImage){
-        this.onSendImage = sendImage;
+    static class GalleryHolder extends RecyclerView.ViewHolder {
+
+        ImageView imageView;
+
+        public GalleryHolder(@NonNull View itemView) {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.imageView);
+
+        }
     }
 
 }

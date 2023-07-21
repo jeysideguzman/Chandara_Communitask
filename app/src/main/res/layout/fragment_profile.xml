@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.Profile">
 
     <androidx.appcompat.widget.Toolbar
-        android:layout_alignParentTop="true"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/toolbar"
+        android:layout_alignParentTop="true"
         android:background="@android:color/white"
         android:elevation="2dp"
-        app:contentInsetStart="0dp"
-        app:contentInsetEnd="0dp">
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,48 +27,64 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="username"
-                android:gravity="center"
-                android:textStyle="bold"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:textColor="@android:color/black"/>
+                android:textStyle="bold" />
+
             <ImageButton
-                android:id="@+id/send"
-                android:contentDescription="@null"
+                android:id="@+id/sendBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="12dp"
                 android:background="@drawable/profilemenuicon"
-                android:layout_margin="12dp"/>
+                android:contentDescription="@null" />
 
         </RelativeLayout>
 
-
     </androidx.appcompat.widget.Toolbar>
 
-
     <LinearLayout
-        android:id="@+id/linear1"
+        android:id="@+id/linear_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/profileImage"
-            app:civ_border_color="#76D1FA"
-            app:civ_border_width="1dp"
-            android:src="@drawable/usericon"
-            android:layout_margin="14dp"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="14dp"
+                android:src="@drawable/usericon"
+                app:civ_border_color="#76D1FA"
+                app:civ_border_width="1dp" />
+
+            <ImageButton
+                android:id="@+id/edit_profileImage"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_alignEnd="@id/profileImage"
+                android:layout_alignRight="@id/profileImage"
+                android:layout_alignBottom="@id/profileImage"
+                android:background="@drawable/circlebkg"
+                android:elevation="3dp"
+                android:src="@drawable/editicon"
+                android:visibility="gone" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="center_vertical"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
@@ -76,35 +92,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textSize="18sp"
                 android:padding="4dp"
                 android:text="Username"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/statusTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
                 android:maxLines="3"
-                android:text="Love to travel the world"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-
-
-
+                android:padding="4dp"
+                android:text="Love playing Mobile Legends Bang Bang"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
     </LinearLayout>
-    
+
     <RelativeLayout
         android:id="@+id/combinedLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear1">
+        android:layout_below="@id/linear_1">
 
         <LinearLayout
             android:id="@+id/countLayout"
@@ -119,25 +132,24 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-
                 <TextView
                     android:id="@+id/followingCountTv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="250"
-                    android:textAlignment="center"
                     android:gravity="center_horizontal"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/following"
                     android:gravity="center_horizontal"
-                    android:textStyle="bold"
+                    android:text="@string/following"
                     android:textAlignment="center"
-                    android:textColor="@color/black"/>
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -146,27 +158,25 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
 
                 <TextView
                     android:id="@+id/followersCountTv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="18k"
-                    android:textAlignment="center"
                     android:gravity="center_horizontal"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/followers"
                     android:gravity="center_horizontal"
-                    android:textStyle="bold"
+                    android:text="@string/followers"
                     android:textAlignment="center"
-                    android:textColor="@color/black"/>
-
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -176,41 +186,63 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-
                 <TextView
                     android:id="@+id/postCountTv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="250"
-                    android:textAlignment="center"
                     android:gravity="center_horizontal"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/posts"
                     android:gravity="center_horizontal"
-                    android:textStyle="bold"
+                    android:text="@string/posts"
                     android:textAlignment="center"
-                    android:textColor="@color/black"/>
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Follow"
-            android:visibility="gone"
-            android:background="@drawable/btnbkg"
-            android:textColor="@color/white"
-            android:width="160dp"
+            android:layout_below="@id/countLayout"
             android:layout_centerHorizontal="true"
-            android:id="@+id/followBtn"/>
+            android:layout_marginTop="12dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/startChatBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/btn_bg"
+                android:minWidth="160dp"
+                android:text="Say Hi !"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/followBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/btn_bg"
+                android:minWidth="160dp"
+                android:text="Follow"
+                android:textColor="@android:color/white"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 
@@ -218,17 +250,16 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#C8C8C8"
         android:layout_below="@id/combinedLayout"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"/>
-    
+        android:layout_marginBottom="8dp"
+        android:background="#C8C8C8" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/combinedLayout"/>
-
+        android:layout_below="@id/view" />
 
 
 </RelativeLayout>

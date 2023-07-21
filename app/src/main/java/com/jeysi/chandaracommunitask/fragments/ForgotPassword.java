@@ -1,7 +1,4 @@
 package com.jeysi.chandaracommunitask.fragments;
-
-import static com.jeysi.chandaracommunitask.fragments.CreateAccountFragment.EMAIL_REGEX;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,12 +17,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.jeysi.chandaracommunitask.FragmentReplaceActivity;
 import com.jeysi.chandaracommunitask.R;
+import com.jeysi.chandaracommunitask.FragmentReplaceActivity;
 
+import static com.jeysi.chandaracommunitask.fragments.CreateAccountFragment.EMAIL_REGEX;
 
 public class ForgotPassword extends Fragment {
-
 
     private TextView loginTv;
     private Button recoverBtn;
@@ -35,11 +32,9 @@ public class ForgotPassword extends Fragment {
 
     private ProgressBar progressBar;
 
-
     public ForgotPassword() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +48,7 @@ public class ForgotPassword extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
+
         clickListener();
 
     }
@@ -77,7 +73,6 @@ public class ForgotPassword extends Fragment {
             }
         });
 
-
         recoverBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,10 +80,8 @@ public class ForgotPassword extends Fragment {
                 String email = emailEt.getText().toString();
 
                 if (email.isEmpty() || !email.matches(EMAIL_REGEX)){
-
                     emailEt.setError("Input valid email");
                     return;
-
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
@@ -99,16 +92,12 @@ public class ForgotPassword extends Fragment {
                             public void onComplete(@NonNull Task<Void> task) {
 
                                 if (task.isSuccessful()){
-
-                                    Toast.makeText(getContext(), "Password reset email sent",
+                                    Toast.makeText(getContext(), "Password reset email send successfully",
                                             Toast.LENGTH_SHORT).show();
                                     emailEt.setText("");
-
                                 }else {
-
                                     String errMsg = task.getException().getMessage();
                                     Toast.makeText(getContext(), "Error: "+errMsg, Toast.LENGTH_SHORT).show();
-
                                 }
 
                                 progressBar.setVisibility(View.GONE);
@@ -116,8 +105,10 @@ public class ForgotPassword extends Fragment {
                             }
                         });
 
+
             }
         });
+
     }
 
 }

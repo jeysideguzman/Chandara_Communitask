@@ -2,21 +2,33 @@ buildscript {
 
     repositories {
         google()
-        //mavenCentral()
-        jcenter()
+        mavenCentral()
+
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.15'
-        classpath "com.android.tools.build:gradle:8.0.2"
+        classpath 'com.android.tools.build:gradle:7.2.2'
 
+        classpath 'com.google.gms:google-services:4.3.15'
     }
 
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id 'com.android.application' version '8.0.1' apply false
     id 'com.android.library' version '8.0.1' apply false
+}
 
 
+ext {
+    compileSdkVersion = 28
+    buildToolsVersion = '28.0.3'
+    androidXLibraryVersion = '1.0.0'
 
-
+    PUBLISH_GROUP_ID = 'com.theartofdev.edmodo'
+    PUBLISH_ARTIFACT_ID = 'android-image-cropper'
+    PUBLISH_VERSION = '2.8.0'
+    // gradlew clean build generateRelease
+}
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

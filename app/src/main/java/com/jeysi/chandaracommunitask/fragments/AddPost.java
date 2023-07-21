@@ -5,16 +5,10 @@ package com.jeysi.chandaracommunitask.fragments;
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,27 +18,29 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import com.jeysi.chandaracommunitask.R;
-import com.jeysi.chandaracommunitask.adapter.GalleryAdapter;
-import com.jeysi.chandaracommunitask.model.GalleryImages;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.jeysi.chandaracommunitask.R;
+import com.jeysi.chandaracommunitask.adapter.GalleryAdapter;
+import com.jeysi.chandaracommunitask.model.GalleryImages;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -58,6 +54,9 @@ import java.util.Map;
 public class AddPost extends Fragment {
 
     Uri imageUri;
+
+    Dialog dialog;
+
     private EditText descET;
     private ImageView imageView;
     private RecyclerView recyclerView;
@@ -66,15 +65,9 @@ public class AddPost extends Fragment {
     private GalleryAdapter adapter;
     private FirebaseUser user;
 
-
-
-
-
-
     public AddPost() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,89 +91,81 @@ public class AddPost extends Fragment {
         recyclerView.setAdapter(adapter);
 
         clickListener();
+
     }
 
-    private void clickListener(){
+    private void clickListener() {
 
-        adapter.SendImage(new GalleryAdapter.SendImage() {
-            @Override
-            public void onSend(Uri picUri) {
+        adapter.SendImage(picUri -> CropImage.activity(picUri)
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setAspectRatio(4, 3)
+                .start(getContext(), AddPost.this));
 
-                imageUri = picUri;
+        nextBtn.setOnClickListener(v -> {
 
-                CropImage.activity(picUri)
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setAspectRatio(4, 3)
-                        .start(getContext(), AddPost.this);
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            final StorageReference storageReference = storage.getReference().child("Post Images/" + System.currentTimeMillis());
 
-            }
-        });
+            dialog.show();
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference storageReference = storage.getReference().child("Post Images/"+System.currentTimeMillis());
+            storageReference.putFile(imageUri)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
 
-                storageReference.putFile(imageUri)
-                        .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                            storageReference.getDownloadUrl().addOnSuccessListener(uri -> uploadData(uri.toString()));
 
-                                if (task.isSuccessful()){
+                        } else {
+                            dialog.dismiss();
+                            Toast.makeText(getContext(), "Failed to upload post", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-
-
-                                            uploadData(uri.toString());
-
-                                        }
-                                    });
-
-                                }
-
-                            }
-                        });
-            }
         });
 
     }
 
-    private void uploadData(String imageURL){
+    private void uploadData(String imageURL) {
 
-         CollectionReference reference = FirebaseFirestore.getInstance().collection("Users")
+
+        CollectionReference reference = FirebaseFirestore.getInstance().collection("Users")
                 .document(user.getUid()).collection("Post Images");
 
+        String id = reference.document().getId();
 
-         String id = reference.document().getId();;
+        String description = descET.getText().toString();
 
-         String description = descET.getText().toString();
+        List<String> list = new ArrayList<>();
 
         Map<String, Object> map = new HashMap<>();
-
         map.put("id", id);
         map.put("description", description);
         map.put("imageUrl", imageURL);
-        map.put("timestamps", FieldValue.serverTimestamp());
+        map.put("timestamp", FieldValue.serverTimestamp());
+
+        map.put("name", user.getDisplayName());
+        map.put("profileImage", String.valueOf(user.getPhotoUrl()));
+
+        map.put("likes", list);
+
+        map.put("uid", user.getUid());
 
         reference.document(id).set(map)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            
-                            System.out.println();
-                        }else {
-                            Toast.makeText(getContext(), "Error "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        System.out.println();
+                        Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Error: " + task.getException().getMessage(),
+                                Toast.LENGTH_SHORT).show();
                     }
+                    dialog.dismiss();
+
                 });
 
     }
 
-    private void init(View view){
+    private void init(View view) {
+
         descET = view.findViewById(R.id.descriptionET);
         imageView = view.findViewById(R.id.imageView);
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -188,55 +173,58 @@ public class AddPost extends Fragment {
         nextBtn = view.findViewById(R.id.nextBtn);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
+
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.laoding_dialog);
+        dialog.getWindow().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.loading_dialog, null));
+        dialog.setCancelable(false);
+
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+        getActivity().runOnUiThread(() -> Dexter.withContext(getContext())
+                .withPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
 
-                Dexter.withContext(getContext())
-                        .withPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                               Manifest.permission.READ_EXTERNAL_STORAGE)
-                        .withListener(new MultiplePermissionsListener() {
-                            @Override
-                            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.areAllPermissionsGranted()) {
+                            File file = new File(Environment.getExternalStorageDirectory().toString() + "/Download");
 
-                                if (report.areAllPermissionsGranted()){
+                            if (file.exists()) {
+                                File[] files = file.listFiles();
+                                assert files != null;
 
-                                    File file = new File(Environment.getExternalStorageDirectory().toString()+ "/Download");
+                                list.clear();
 
-                                    if (file.exists()){
-                                        File[] files = file.listFiles();
+                                for (File file1 : files) {
 
-                                        assert files != null;
-                                        for (File file1 : files){
-                                            if (file1.getAbsolutePath().endsWith(".jpeg") || file1.getAbsolutePath().endsWith(".png")){
+                                    if (file1.getAbsolutePath().endsWith(".jpg") || file1.getAbsolutePath().endsWith(".png")) {
 
-                                                list.add(new GalleryImages(Uri.fromFile(file)));
-                                                adapter.notifyDataSetChanged();
+                                        list.add(new GalleryImages(Uri.fromFile(file1)));
+                                        adapter.notifyDataSetChanged();
 
-                                            }
-                                        }
                                     }
 
                                 }
 
-                            }
-
-                            @Override
-                            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
 
                             }
-                        }).check();
 
+                        }
 
+                    }
 
-            }
-        });
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+
+                    }
+                }).check());
 
     }
 
@@ -244,21 +232,25 @@ public class AddPost extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
 
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
-            if (requestCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
 
-                Uri image = result.getUri();
+                assert result != null;
+                imageUri = result.getUri();
 
                 Glide.with(getContext())
-                        .load(image)
+                        .load(imageUri)
                         .into(imageView);
 
                 imageView.setVisibility(View.VISIBLE);
                 nextBtn.setVisibility(View.VISIBLE);
+
             }
+
         }
+
     }
 }

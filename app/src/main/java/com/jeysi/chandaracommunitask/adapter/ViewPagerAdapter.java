@@ -6,20 +6,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.jeysi.chandaracommunitask.fragments.AddPost;
-import com.jeysi.chandaracommunitask.fragments.CommuniDay;
-import com.jeysi.chandaracommunitask.fragments.CommuniPoints;
 import com.jeysi.chandaracommunitask.fragments.Home;
-import com.jeysi.chandaracommunitask.fragments.Insights;
-
+import com.jeysi.chandaracommunitask.fragments.Notification;
 import com.jeysi.chandaracommunitask.fragments.Profile;
-
+import com.jeysi.chandaracommunitask.fragments.Search;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     int noOfTabs;
 
     public ViewPagerAdapter(@NonNull FragmentManager fm, int noOfTabs) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.noOfTabs = noOfTabs;
     }
 
@@ -28,26 +25,22 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
 
         switch (position){
+
+            default:
             case 0:
                 return new Home();
 
             case 1:
-                return new Insights();
+                return new Search();
 
             case 2:
                 return new AddPost();
 
             case 3:
-                return new CommuniDay();
+                return new Notification();
 
             case 4:
                 return new Profile();
-
-
-
-            default:
-                return null;
-
 
 
         }
@@ -56,7 +49,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-
         return noOfTabs;
     }
 }
